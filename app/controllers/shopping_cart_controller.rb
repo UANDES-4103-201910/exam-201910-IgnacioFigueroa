@@ -1,6 +1,8 @@
 class ShoppingCartController < ApplicationController
   def show
-    @products = helpers.shopping_cart_get_products
+    @products = helpers.shopping_cart_get_products[1]
+    a =1
+    puts @products
   end
 
   def update

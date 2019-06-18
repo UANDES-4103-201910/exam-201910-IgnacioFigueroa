@@ -7,13 +7,17 @@
   <div class="col">Show product</div>
 </div>
 <% @products.each do |product| %>
-  <div class="row">
-    <div class="col"><%= product.brand %></div>
-    <div class="col"><%= product.model %></div>
-    <div class="col"><%= product.variant %></div>
-    <div class="col"><%= product.price %></div>
-    <div class="col"><%= product.short_description %></div>
-    <div class="col"><%= link_to 'View product', product_path(product.id), method: :get, class: "btn btn-outline-secondary" %></div>
-  </div>
-  <br>
+  <% if product %>
+    <div class="row">
+      <div class="col"><%= product.brand %></div>
+      <div class="col"><%= product.model %></div>
+      <div class="col"><%= product.variant %></div>
+      <div class="col"><%= product.price %></div>
+      <div class="col"><%= product.short_description %></div>
+      <div class="col"><%= link_to 'View product', product_path(product.id), method: :get, class: "btn btn-outline-secondary" %></div>
+    </div>
+    <br>
+    <% end %>
+
+
 <% end %>
