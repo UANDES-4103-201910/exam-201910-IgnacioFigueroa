@@ -1,2 +1,24 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+<div class="row ">
+  <div class="col">Brand</div>
+  <div class="col">Model</div>
+  <div class="col">Variant</div>
+  <div class="col">Price</div>
+  <div class="col">Short description</div>
+  <div class="col">Show product</div>
+</div>
+<% @products.each do |product| %>
+  <div class="row">
+    <div class="col"><%= product.brand %></div>
+    <div class="col"><%= product.model %></div>
+    <div class="col"><%= product.variant %></div>
+    <div class="col"><%= product.price %></div>
+    <div class="col"><%= product.short_description %></div>
+    <div class="col"><%= link_to 'View product', product_path(product.id), method: :get, class: "btn btn-outline-secondary" %></div>
+  </div>
+  <br>
+<% end %>
+
+

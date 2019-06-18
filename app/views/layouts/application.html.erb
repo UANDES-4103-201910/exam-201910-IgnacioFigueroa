@@ -18,14 +18,14 @@
     <ul class="navbar-nav ml-auto">
       <% if user_signed_in? %>
         <li class="nav-item">
-          <a href="" class="nav-link">Cart</a>
+          <%= link_to('Cart', shopping_cart_path, method: :get, class: "nav-link") %>
         </li>
         <li class="nav-item">
           <%= link_to('Log out', destroy_user_session_path, method: :delete, class: "nav-link") %>
         </li>
       <% else %>
         <li class="nav-item">
-          <%= link_to('Sign in', new_user_session_path, method: :delete, class: "nav-link") %>
+          <%= link_to('Sign in', new_user_session_path, method: :get, class: "nav-link") %>
         </li>
       <% end %>
     </ul>
@@ -36,19 +36,19 @@
 <body>
 <ul class="nav bg-secondary justify-content-center">
   <li class="nav-item">
-    <a href="#" class="nav-link text-white">Handsets</a>
+    <a href="<%=handsets_path %>" class="nav-link text-white">Handsets</a>
   </li>
   <li class="nav-item">
-    <a href="#" class="nav-link text-white">Prepay options</a>
+    <a href="<%=prepay_options_path %>" class="nav-link text-white">Prepay options</a>
   </li>
   <li class="nav-item">
-    <a href="#" class="nav-link text-white">Subscriptions</a>
+    <a href="<%=subscriptions_path %>" class="nav-link text-white">Subscriptions</a>
   </li>
 </ul>
 
 <div class="row">
   <div class="col-md-2">
-    <ul class="nav bg-light flex-column" style="height: 100vh">
+    <ul class="nav bg-light flex-column" style="height: 100%">
       <li class="nav-item">
         <a href="#" class="nav-link">Link1</a>
       </li>
@@ -61,10 +61,66 @@
     </ul>
   </div>
   <div class="col">
+    <% flash.each do |key, value| %>
+      <% if key == "alert" %>
+        <div class="alert alert-warning">
+          <%= value %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% elsif key == "notice" %>
+        <div class="alert alert-success">
+          <%= value %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% else %>
+        <div class="alert alert-<%= key %>">
+          <%= value %>
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      <% end %>
+    <% end %>
     <%= yield %>
   </div>
 </div>
-
-
 </body>
+
+<footer class="page-footer text-white bg-dark font-small blue pt-4">
+  <div class="container-fluid text-center text-md-left">
+    <div class="row">
+      <div class="col-md-6 mt-md-0 mt-3">
+        <h5 class="text-uppercase">About Z-Mobile</h5>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in posuere est. Nullam ultrices mattis pharetra.
+          Ut eu sem tellus. Nullam velit ipsum, scelerisque id eros in, consectetur blandit arcu. Maecenas vitae
+          condimentum leo, vel iaculis ante. Nunc ante nisi, pulvinar eu eros sed, sollicitudin fringilla nisi.
+          Pellentesque in iaculis elit. </p>
+      </div>
+      <hr class="clearfix w-100 d-md-none pb-3">
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">Contact</h5>
+        <ul class="list-unstyled">
+          <li>
+            <p>+569 7620 4295</p>
+          </li>
+        </ul>
+      </div>
+      <div class="col-md-3 mb-md-0 mb-3">
+        <h5 class="text-uppercase">Address</h5>
+        <ul class="list-unstyled">
+          <li>
+            <p>
+              Monseñor Álvaro del Portillo 12455, Santiago, Las Condes, Región Metropolitana
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
+
 </html>

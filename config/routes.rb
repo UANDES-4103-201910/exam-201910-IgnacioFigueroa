@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   get 'shopping_cart', to: 'shopping_cart#show'
-  get 'shopping_cart/add/:product_id/:amount', to: 'shopping_cart#add_product', defaults: {amount: 1}
-
+  post 'shopping_cart/add/:id', to: 'shopping_cart#add_product', as: "add_product"
+  get 'handsets', to: 'home#handsets', as: "handsets"
+  get 'subscriptions', to: 'home#subscriptions', as: 'subscriptions'
+  get 'prepay_options', to: 'home#prepay_options', as: 'prepay_options'
   get 'shopping_cart/update'
   resources :orders
   resources :products

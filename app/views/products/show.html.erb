@@ -30,5 +30,8 @@
   <%= @product.short_description %>
 </p>
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<% if user_signed_in? %>
+  <%=link_to 'Add to cart', add_product_path(@product.id), method: :post, class: "btn btn-outline-primary"%>
+<% end %>
+
+<%= link_to 'Back', root_path %>
