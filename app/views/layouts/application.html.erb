@@ -1,15 +1,70 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Exam2019</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+<head>
+  <title>Exam2019</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
 
-  <body>
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand text-white" href=<%= root_path %>>Z-Mobile</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <ul class="navbar-nav ml-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <a href="" class="nav-link">Cart</a>
+        </li>
+        <li class="nav-item">
+          <%= link_to('Log out', destroy_user_session_path, method: :delete, class: "nav-link") %>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to('Sign in', new_user_session_path, method: :delete, class: "nav-link") %>
+        </li>
+      <% end %>
+    </ul>
+
+    </div>
+  </nav>
+</header>
+<body>
+<ul class="nav bg-secondary justify-content-center">
+  <li class="nav-item">
+    <a href="#" class="nav-link text-white">Handsets</a>
+  </li>
+  <li class="nav-item">
+    <a href="#" class="nav-link text-white">Prepay options</a>
+  </li>
+  <li class="nav-item">
+    <a href="#" class="nav-link text-white">Subscriptions</a>
+  </li>
+</ul>
+
+<div class="row">
+  <div class="col-md-2">
+    <ul class="nav bg-light flex-column" style="height: 100vh">
+      <li class="nav-item">
+        <a href="#" class="nav-link">Link1</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Link2</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Link3</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col">
     <%= yield %>
-  </body>
+  </div>
+</div>
+
+
+</body>
 </html>
